@@ -18,7 +18,8 @@
     </header>
     <section id="user-goal">
       <h2>My Course Goal</h2>
-      <p>{{ outputGoal() }}</p> <!-- interpolation -- key feature of vue -->
+      <!-- <p v-html="outputGoal()"></p> --> not that important and doesn't protect against XSS
+      <p v-html>{{ outputGoal() }}</p> <!-- interpolation -- key feature of vue -->
       <p>Learn more <a v-bind:href="vueLink">about Vue</a>.</p>
     </section>
   </body>
