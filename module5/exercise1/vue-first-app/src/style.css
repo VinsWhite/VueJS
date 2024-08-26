@@ -23,7 +23,7 @@
     padding: 0;
     list-style: none;
   }
-  li {
+  li, form {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     margin: 1rem auto;
     border-radius: 10px;
@@ -52,4 +52,18 @@
     background-color: #ec3169;
     border-color: #ec3169;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
+  }
+
+  input {
+    font: inherit;
+    padding: 0.15rem;
+  }
+  label {
+    font-weight: bold;
+    margin-right: 1rem;
+    width: 7rem;
+    display: inline-block;
+  }
+  form div {
+    margin: 1rem 0;
   }

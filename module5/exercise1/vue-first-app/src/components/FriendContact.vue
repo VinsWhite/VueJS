@@ -1,15 +1,24 @@
 <script>
 export default {
   props: {
-    friend: { // we passed as an object and it should be required
+    friend: {
       type: Object,
-      required: true
+      required: true,
+    },
+  },
+  emits: {
+    'toggle-favorite': function(id) {
+      if (id) {
+        return true;
+      } else {
+        console.warn('id is missing!');
+        return false;
+      }
     }
   },
   data() {
     return {
       detailsAreVisible: false,
-      friendIsFavorite: this.isFavorite,
     };
   },
   methods: {
@@ -17,20 +26,15 @@ export default {
       this.detailsAreVisible = !this.detailsAreVisible;
     },
     toggleFavorite() {
-      if (this.friendIsFavorite === 1) {
-        this.friendIsFavorite = 0;
-      } else {
-        this.friendIsFavorite = 1;
-      }
-    }
-  }
+      this.$emit('toggle-favorite', this.friend.id); // emit event with friend's id
+    },
+  },
 };
 </script>
 
-
 <template>
   <li>
-    <h2>{{ friend.name }} {{ friendIsFavorite === 1 ? '(Favorite)' : '' }}</h2>
+    <h2>{{ friend.name }} {{ friend.isFavorite ? '(Favorite)' : '' }}</h2>
     <button @click="toggleFavorite">Toggle Favorite</button>
     <button @click="toggleDetails">{{ detailsAreVisible ? 'Hide' : 'Show' }} Details</button>
     <ul v-if="detailsAreVisible">
