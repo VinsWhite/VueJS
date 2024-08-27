@@ -34,6 +34,19 @@ export default {
         friend.isFavorite = !friend.isFavorite;
       }
     },
+    addContact(name, phone, email) {
+      const newFriendContact = {
+        id: new Date().toISOString(), // string that reflects the current time
+        name: name,
+        phone: phone,
+        email: email,
+        isFavorite: false
+      };
+      this.friends.push(newFriendContact);
+    },
+    deleteContact(friendId) {
+      this.friends = this.friends.filter((friend) => friend.id !== friendId); // it will return a new array
+    }
   },
 };
 </script>
@@ -43,13 +56,14 @@ export default {
     <header>
       <h1>My Friends</h1>
     </header>
-    <NewFriendVue />
+    <NewFriendVue @add-contact="addContact" />
     <ul>
       <FriendContactVue
         v-for="friend in friends"
         :key="friend.id"
         :friend="friend"
         @toggle-favorite="toggleFavoriteStatus"
+        @delete="deleteContact"
       />
     </ul>
   </section>

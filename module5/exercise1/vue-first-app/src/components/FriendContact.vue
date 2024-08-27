@@ -14,6 +14,14 @@ export default {
         console.warn('id is missing!');
         return false;
       }
+    },
+    'delete': function(id) {
+      if (id) {
+        return true;
+      } else {
+        console.warn('id is missing!');
+        return false;
+      }
     }
   },
   data() {
@@ -45,5 +53,6 @@ export default {
         <strong>Email:</strong> {{ friend.email }}
       </li>
     </ul>
+    <button @click="$emit('delete', friend.id)">Delete</button> <!-- we can call the function here directly -->
   </li>
 </template>
