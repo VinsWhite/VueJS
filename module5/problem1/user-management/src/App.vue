@@ -9,7 +9,7 @@ components: {
 </script>
 
 <template>
-  <div>
+  <div id="mainContainer">
     <UserData />
     <ActiveUser />
   </div>
