@@ -4,7 +4,7 @@ export default {
   components: {
     KnowledgeElementVue
   },
-  props: ['topics'],
+  inject: ['topics'], // provide - inject works just with parent/child
   emits: ['select-topic']
 };
 </script>
@@ -17,7 +17,6 @@ export default {
       :id="topic.id"
       :topic-name="topic.title"
       :description="topic.description"
-      @select-topic="$emit('select-topic', $event)"
     ></KnowledgeElementVue>
   </ul>
 </template>

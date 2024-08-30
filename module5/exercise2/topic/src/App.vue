@@ -29,11 +29,27 @@ export default {
       activeTopic: null,
     };
   },
+  provide() {
+    return { // it refers to topics data
+      topics: this.topics,
+      selectTopic: this.activateTopic
+    }
+  },
   methods: {
     activateTopic(topicId) {
       this.activeTopic = this.topics.find((topic) => topic.id === topicId);
     },
   },
+  mounted() {
+    setTimeout(() => {
+      this.topics.push({
+        id: 'events',
+        title: 'Events',
+        description: 'Events are important in Vue',
+        fullText: 'Events allow you to trigger code on demand!'
+      })
+    }, 3000);
+  }
 };
 </script>
 
@@ -43,6 +59,6 @@ export default {
       :topic-title="activeTopic && activeTopic.title"
       :text="activeTopic && activeTopic.fullText"
     ></ActiveElementVue>
-    <KnowledgeBaseVue :topics="topics" @select-topic="activateTopic"></KnowledgeBaseVue>
+    <KnowledgeBaseVue></KnowledgeBaseVue>
   </div>
 </template>

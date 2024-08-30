@@ -5,7 +5,6 @@ export default {
   components: {
     KnowledgeGridVue
   },
-  props: ['topics'],
   emits: ['select-topic'],
 };
 </script>
@@ -13,6 +12,6 @@ export default {
 <template>
   <section>
     <h2>Select a Topic</h2>
-    <KnowledgeGridVue :topics="topics" @select-topic="$emit('select-topic', $event)"></KnowledgeGridVue>
+    <KnowledgeGridVue></KnowledgeGridVue>
   </section>
 </template>
