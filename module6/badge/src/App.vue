@@ -1,12 +1,12 @@
 <script>
-import TheHeaderVue from './components/TheHeader.vue'
-import BadgeListVue from './components/BadgeList.vue'
-import UserInfoVue from './components/UserInfo.vue'
-import CourseGoalsVue from './components/CourseGoals.vue'
+import TheHeaderVue from './components/layout/TheHeader.vue'
+import ActiveGoalsVue from './components/ActiveGoals.vue'
+import ManageGoalsVue from './components/ManageGoals.vue'
 
 export default {
   data() {
     return {
+      selectedComponent: 'ActiveGoalsVue',
       activeUser: {
         name: 'Maximilian Schwarzmüller',
         description: 'Site owner and admin',
@@ -14,11 +14,15 @@ export default {
       },
     };
   },
+  methods: {
+    setSelectedComponent(cmp) {
+      this.selectedComponent = cmp;
+    }
+  },
   components: {
     TheHeaderVue,
-    BadgeListVue,
-    UserInfoVue,
-    CourseGoalsVue
+    ActiveGoalsVue,
+    ManageGoalsVue
   }
 };
 </script>
@@ -26,15 +30,11 @@ export default {
 <template>
   <div>
     <TheHeaderVue></TheHeaderVue>
-    <BadgeListVue></BadgeListVue>
-    <UserInfoVue
-      :full-name="activeUser.name"
-      :info-text="activeUser.description"
-      :role="activeUser.role"
-    ></UserInfoVue>
-    <CourseGoalsVue #default="slotProps">
-        <h2>{{ slotProps.item }}</h2>
-        <p>{{ slotProps['another-prop'] }}</p>
-    </CourseGoalsVue>
+    <button @click="setSelectedComponent('ActiveGoalsVue')">Active Goals</button>
+    <button @click="setSelectedComponent('ManageGoalsVue')">Manage Goals</button>
+    <!-- component is a dynamic component -->
+    <keep-alive>
+      <component :is="selectedComponent"></component>
+    </keep-alive>
   </div>
 </template>
