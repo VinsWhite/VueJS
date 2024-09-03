@@ -28,6 +28,8 @@ export default {
     provide() {
         return {
             resources: this.storedResources,
+            addResource: this.addResource,
+            deleteResource: this.removeResource
         }
     },
     computed: {
@@ -51,7 +53,11 @@ export default {
             };
             this.storedResources.unshift(newResource);
             this.selectedTab = 'stored-resources';
-        }
+        },
+        removeResource(resId) { // these actions manipulate the original array and not create a new one
+            const resIndex = this.storedResources.findIndex(res => res.id === resId);
+            this.storedResources.splice(resIndex, 1)
+        }   
     }
 }
 </script>
@@ -62,6 +68,8 @@ export default {
             <base-button @click="setSelectedTab('stored-resources')" :mode="storedResButtonMode">Stored Resources</base-button>
             <base-button @click="setSelectedTab('add-resource')" :mode="addResButtonMode">Add Resources</base-button>
         </base-card>
-        <component :is="selectedTab"></component>
+        <keep-alive>
+            <component :is="selectedTab"></component>
+        </keep-alive>
     </div>
 </template>
