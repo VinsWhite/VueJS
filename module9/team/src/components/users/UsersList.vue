@@ -17,7 +17,8 @@ export default {
   inject: ['users'],
   methods: {
     confirmInput() {
-      this.$router.push('/teams'); // to push a new router to the router history
+      // do something
+      this.$router.push('/teams');
     }
   }
 };

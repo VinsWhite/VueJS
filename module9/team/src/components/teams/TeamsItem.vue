@@ -8,10 +8,11 @@
 
 <script>
 export default {
-  props: ['id','name', 'memberCount'],
-  computer: {
+  props: ['id', 'name', 'memberCount'],
+  computed: {
     teamMembersLink() {
-      return '/teams' + this.id;
+      /* return '/teams/' + this.id; */
+      return { name: 'team-members', params: { teamId: this.id } } // now with an obj is more useful
     }
   }
 };
