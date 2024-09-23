@@ -4,6 +4,9 @@
     <main>
       <router-view></router-view> <!-- this is the place where the selected component should be loaded -->
     </main>
+    <footer>
+      <router-view name="footer"></router-view>
+    </footer>
   </div>
 </template>
 

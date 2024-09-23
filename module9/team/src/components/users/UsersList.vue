@@ -17,9 +17,13 @@ export default {
   inject: ['users'],
   methods: {
     confirmInput() {
-      // do something
-      this.$router.push('/teams');
+    // do something
+    this.$router.push('/teams');
     }
+  },
+  beforeRouteEnter(to, from, next) { // before the navigation to this component is confirmed
+    console.log('UserList cmp beforeRouteEnter');
+    next();
   }
 };
 </script>
